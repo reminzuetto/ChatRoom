@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: #f8f8f8; */
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to bottom right, #e0d1ff, #b0a6e1);
+}
+section.chat__section {
+  width: 800px;
+  max-width: 90%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.brand {
+  padding: 20px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+}
+.brand h1 {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #444;
+  margin-left: 10px;
+}
+.message__area {
+  height: 500px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-top: 40px;
+}
+
+.message {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  max-width: 300px;
+  position: relative;
+  overflow-wrap: break-word; /* Cho phép chia từ */
+  word-wrap: break-word; /* Cho phép chia từ */
+  word-break: break-word; /* Cho phép chia từ */
+  /* white-space: pre-wrap; Đảm bảo không bị cắt dòng */
+}
+.incoming {
+  background: #8f8be8;
+  color: #fff;
+}
+.outgoing {
+  background: #dedee4;
+  color: #787986;
+  margin-left: auto;
+}
+.message h4 {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+#send-icon {
+  display: inline-block;
+  margin-left: 10px; /* Khoảng cách giữa textarea và biểu tượng gửi */
+}
+
+#send-icon img {
+  width: 24px; /* Kích thước của biểu tượng gửi */
+  height: 24px;
+  cursor: pointer; /* Biểu tượng chuột khi di chuyển qua biểu tượng */
+}
+
+.textarea {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.textarea textarea {
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  outline: none;
+  background: #fbfbfb;
+  flex: 1; /* Take up remaining space */
+  padding: 10px;
+  font-size: 16px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  resize: none;
+  width: 100%;
+  height: 80px; /* Chiều cao ban đầu */
+  max-height: 120px; /* Chiều cao tối đa */
+  overflow-y: auto; /* Ẩn thanh trượt dọc */
+  scroll-behavior: smooth;
+  scroll-snap-type: none;
+  background: rgba(190, 185, 185, 0.4);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.textarea i {
+  font-size: 24px;
+  margin-left: 10px; /* Adjust as needed */
+  color: #666; /* Optional color for the icon */
+  cursor: pointer; /* Optional cursor style */
+}
