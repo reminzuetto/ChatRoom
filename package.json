@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chatbot2": "file:",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.2"

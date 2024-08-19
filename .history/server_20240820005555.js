@@ -29,6 +29,13 @@ io.on("connection", (socket) => {
     socket.to(msg.room).emit("message", msg); // Broadcast to room excluding sender
   });
 
+  // Handle logout
+  socket.on("logout", (room) => {
+    socket.leave(room);
+    console.log(`User left room: ${room}`);
+    socket.to(room).emit("message", { text: "A user has left the room." }); // Notify others
+  });
+
   // Handle disconnect
   socket.on("disconnect", () => {
     console.log("User disconnected");

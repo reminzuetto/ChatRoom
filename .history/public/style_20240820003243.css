@@ -1,0 +1,92 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat__section {
+  width: 100%;
+  max-width: 600px;
+  height: 80vh;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #6200ea;
+  color: white;
+}
+
+.message__area {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 15px;
+}
+
+.message.outgoing {
+  text-align: right;
+}
+
+.message h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #6200ea;
+}
+
+.message p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.textarea {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.textarea textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.textarea i {
+  font-size: 24px;
+  color: #6200ea;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.room__selection {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#rooms {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}

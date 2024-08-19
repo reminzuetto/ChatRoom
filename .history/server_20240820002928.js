@@ -12,9 +12,10 @@ http.listen(PORT, () => {
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/join.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
+// Socket
 io.on("connection", (socket) => {
   console.log("Connected...");
 
@@ -25,8 +26,8 @@ io.on("connection", (socket) => {
   });
 
   // Handle message and broadcast it to the specific room
-  socket.on("message", (msg) => {
-    socket.to(msg.room).emit("message", msg); // Broadcast to room excluding sender
+  socket.on("message", ({ room, msg }) => {
+    io.to(room).emit("message", msg);
   });
 
   // Handle disconnect

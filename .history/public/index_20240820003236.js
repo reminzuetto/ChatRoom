@@ -1,17 +1,20 @@
-const socket = io();
-let name = localStorage.getItem("name");
-let room = localStorage.getItem("room");
+let name;
+let room;
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message__area");
 
-// Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
-if (!name || !room) {
-  window.location.href = "/join.html";
-}
+// Yêu cầu người dùng nhập tên
+do {
+  name = prompt("Please enter your name: ");
+} while (!name);
 
-// Tham gia phòng
-socket.emit("joinRoom", room);
-console.log(`Joined room: ${room}`);
+// Xử lý sự kiện khi người dùng chọn phòng và tham gia phòng
+document.getElementById("joinRoom").addEventListener("click", () => {
+  room = document.getElementById("rooms").value;
+  if (room) {
+    socket.emit("joinRoom", room);
+  }
+});
 
 // Xử lý sự kiện khi nhấn phím "Enter" để gửi tin nhắn
 textarea.addEventListener("keyup", (e) => {
@@ -19,13 +22,6 @@ textarea.addEventListener("keyup", (e) => {
     sendMessage(e.target.value);
   }
 });
-
-// Xử lý sự kiện khi người dùng nhấn vào biểu tượng gửi tin nhắn
-document
-  .querySelector(".bi-chat-right-text-fill")
-  .addEventListener("click", function () {
-    sendMessage(textarea.value.trim());
-  });
 
 function sendMessage(message) {
   if (message.trim() === "") return;
@@ -65,3 +61,8 @@ socket.on("message", (msg) => {
 function scrollToBottom() {
   messageArea.scrollTop = messageArea.scrollHeight;
 }
+
+// Xử lý sự kiện khi người dùng nhấn vào biểu tượng gửi tin nhắn
+document.querySelector(".textarea i").addEventListener("click", function () {
+  sendMessage(textarea.value.trim());
+});
