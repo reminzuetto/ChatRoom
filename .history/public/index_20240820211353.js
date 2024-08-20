@@ -64,10 +64,13 @@ function appendMessage(msg, type) {
   let mainDiv = document.createElement("div");
   mainDiv.classList.add(type, "message");
 
+  // Kiểm tra nếu tin nhắn là của người dùng hiện tại
   let markup = "";
   if (msg.user === name) {
+    // Nếu là tin nhắn của người dùng hiện tại, chỉ hiển thị nội dung tin nhắn
     markup = `<p>${msg.message}</p>`;
   } else {
+    // Nếu là tin nhắn của người khác, hiển thị cả tên người gửi và nội dung tin nhắn
     markup = `
       <h4>${msg.user}</h4>
       <p>${msg.message}</p>

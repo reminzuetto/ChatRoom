@@ -60,11 +60,6 @@ section.chat__section {
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
-  position: relative;
-}
-
-.dropdown-button i {
-  margin-left: 8px; /* Khoảng cách giữa văn bản và biểu tượng caret */
 }
 
 .dropdown-content {

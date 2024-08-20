@@ -1,11 +1,8 @@
-// index.js
 const socket = io();
 let name = localStorage.getItem("name");
 let room = localStorage.getItem("room");
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message__area");
-let dropdownButton = document.querySelector(".brand__right");
-let dropdownContent = document.querySelector(".dropdown-content");
 
 // Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
 if (!name || !room) {
@@ -23,9 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Kiểm tra nếu đã có tên và phòng thì hiển thị chúng
   if (name && room) {
-    // Cập nhật phần tử hiển thị tên người dùng và phòng
-    const roomContent = document.getElementsByClassName("room__content");
-    roomContent[0].textContent = `Room: ${room}`;
+    // Tạo phần tử hiển thị tên người dùng và phòng
+    const usernameDisplay = document.createElement("div");
+    usernameDisplay.className = "username-display";
+    usernameDisplay.textContent = `
+    Room:${room}`;
+
+    // Thêm phần tử vào message__area
+    document.querySelector(".brand__right").appendChild(usernameDisplay);
   }
 });
 
@@ -64,16 +66,13 @@ function appendMessage(msg, type) {
   let mainDiv = document.createElement("div");
   mainDiv.classList.add(type, "message");
 
-  let markup = "";
-  if (msg.user === name) {
-    markup = `<p>${msg.message}</p>`;
-  } else {
-    markup = `
-      <h4>${msg.user}</h4>
-      <p>${msg.message}</p>
-    `;
+  {
+    /* <h4>${msg.user}</h4> */
   }
 
+  let markup = `
+    <p>${msg.message}</p>
+  `;
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
 }
@@ -87,29 +86,3 @@ socket.on("message", (msg) => {
 function scrollToBottom() {
   messageArea.scrollTop = messageArea.scrollHeight;
 }
-
-// Xử lý sự kiện click để hiển thị/ẩn dropdown
-dropdownButton.addEventListener("click", function () {
-  dropdownContent.classList.toggle("show");
-});
-
-// Xử lý sự kiện click để logout
-document.querySelector(".dropdown-item").addEventListener("click", function () {
-  alert("Logging out...");
-  // Xử lý logout ở đây, ví dụ: xóa localStorage và chuyển hướng đến trang login
-  localStorage.removeItem("name");
-  localStorage.removeItem("room");
-  window.location.href = "/join.html"; // Thay đổi đường dẫn nếu cần
-});
-
-// Đóng dropdown nếu nhấp ra ngoài
-window.addEventListener("click", function (event) {
-  if (
-    !event.target.matches(".dropdown-button") &&
-    !event.target.closest(".dropdown-content")
-  ) {
-    if (dropdownContent.classList.contains("show")) {
-      dropdownContent.classList.remove("show");
-    }
-  }
-});

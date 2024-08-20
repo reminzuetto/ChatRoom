@@ -29,11 +29,11 @@ section.chat__section {
 .brand {
   background: #f1f1f1;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .brand__left {
-  padding: 0 20px;
+  padding: 20px;
   background: #f1f1f1;
   display: flex;
   align-items: center;
@@ -45,53 +45,6 @@ section.chat__section {
   color: #444;
   margin-left: 10px;
 }
-
-/* styles.css */
-.brand__right {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-button {
-  background-color: #f0f0f0;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.dropdown-button i {
-  margin-left: 8px; /* Khoảng cách giữa văn bản và biểu tượng caret */
-}
-
-.dropdown-content {
-  display: none; /* Ẩn nội dung dropdown */
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 5px;
-  top: 100%;
-  left: 0;
-}
-
-.dropdown-item {
-  padding: 12px 16px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #f1f1f1;
-}
-
-.show {
-  display: block;
-}
-
 .message__area {
   height: 500px;
   padding: 16px;
@@ -274,9 +227,8 @@ button:active {
 .username-display {
   left: 20px; /* Đẩy phần tử cách bên trái 20px */
   top: 50%;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
+  transform: translate(-50%, -60%); /* Căn giữa theo trục dọc */
+  font-size: 14px;
   color: #333;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;

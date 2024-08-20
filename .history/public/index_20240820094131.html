@@ -13,25 +13,16 @@
   <body>
     <section class="chat__section">
       <div class="brand">
-        <div class="brand__left">
-          <img height="40" src="/assistant.png" alt="" />
-          <h1>Chat Application</h1>
-        </div>
-        <!-- Cập nhật nội dung trong .brand__right -->
-        <!-- Cập nhật nội dung trong .brand__right -->
-        <div class="brand__right">
-          <div class="dropdown-button">
-            <div class="room__content"></div>
-            <i class="bi bi-caret-down-fill"></i>
-            <!-- Biểu tượng caret từ Bootstrap Icons -->
-          </div>
-          <div class="dropdown-content">
-            <div class="dropdown-item">Logout</div>
-          </div>
-        </div>
+        <img height="40" src="/assistant.png" alt="" />
+        <h1>Chat Application</h1>
       </div>
 
-      <div class="message__area"></div>
+      <div class="message__area">
+        <!-- Thêm phần hiển thị tên người dùng ở góc phải -->
+        <div class="username-display">Username</div>
+        <!-- Các tin nhắn sẽ được thêm vào đây -->
+      </div>
+
       <div class="textarea">
         <textarea
           id="textarea"

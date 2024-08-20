@@ -64,16 +64,7 @@ function appendMessage(msg, type) {
   let mainDiv = document.createElement("div");
   mainDiv.classList.add(type, "message");
 
-  let markup = "";
-  if (msg.user === name) {
-    markup = `<p>${msg.message}</p>`;
-  } else {
-    markup = `
-      <h4>${msg.user}</h4>
-      <p>${msg.message}</p>
-    `;
-  }
-
+  let markup = `<p>${msg.message}</p>`;
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
 }

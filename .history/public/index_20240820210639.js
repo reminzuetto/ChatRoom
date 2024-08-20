@@ -4,7 +4,7 @@ let name = localStorage.getItem("name");
 let room = localStorage.getItem("room");
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message__area");
-let dropdownButton = document.querySelector(".brand__right");
+let dropdownButton = document.querySelector(".dropdown-button");
 let dropdownContent = document.querySelector(".dropdown-content");
 
 // Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
@@ -64,16 +64,7 @@ function appendMessage(msg, type) {
   let mainDiv = document.createElement("div");
   mainDiv.classList.add(type, "message");
 
-  let markup = "";
-  if (msg.user === name) {
-    markup = `<p>${msg.message}</p>`;
-  } else {
-    markup = `
-      <h4>${msg.user}</h4>
-      <p>${msg.message}</p>
-    `;
-  }
-
+  let markup = `<p>${msg.message}</p>`;
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
 }
