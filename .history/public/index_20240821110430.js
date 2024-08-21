@@ -111,11 +111,12 @@ document
     // Hiển thị hộp thoại xác nhận
     if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
       // Nếu người dùng chọn OK
-      // alert("Log out...");
-      // Xóa localStorage và chuyển hướng đến trang join.html
+      alert("Đăng xuất...");
+
+      // Xử lý logout ở đây, ví dụ: xóa localStorage và chuyển hướng đến trang login
       localStorage.removeItem("name");
       localStorage.removeItem("room");
-      window.location.href = "/join.html";
+      window.location.href = "/join.html"; // Thay đổi đường dẫn nếu cần
     } else {
       // Nếu người dùng chọn Cancel
       // Tắt thông báo

@@ -7,6 +7,9 @@ let dropdownButton = document.querySelector(".dropdown-button");
 let dropdownContent = document.querySelector(".dropdown-content");
 let dropdownCaret = document.querySelector(".dropdown__caret");
 
+// Đối tượng để theo dõi người gửi tin nhắn gần đây
+const recentMessages = {};
+
 // Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
 if (!name || !room) {
   window.location.href = "/join.html";
@@ -73,20 +76,21 @@ function appendMessage(msg, type) {
       <p>${msg.message}</p>
     `;
   }
-
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
 }
 
-// Nhận tin nhắn từ server và hiển thị
 socket.on("message", (msg) => {
-  // Kiểm tra điều kiện: nếu người gửi khác tên hiện tại
-  if (msg.user !== name) {
-    appendMessage(msg, "incoming");
+  if (msg.user === name) {
+    sendMessage(msg.message);
   } else {
-    // Nếu tên người gửi trùng với tên hiện tại, gửi lại tin nhắn để hiển thị
-    appendMessage(msg, "outgoing");
+    appendMessage(msg, "incoming");
   }
+  scrollToBottom();
+});
+
+socket.on("message", (msg) => {
+  appendMessage(msg, "incoming");
   scrollToBottom();
 });
 
@@ -95,44 +99,27 @@ function scrollToBottom() {
 }
 
 // Xử lý sự kiện click để hiển thị/ẩn dropdown
-dropdownButton.addEventListener("click", function (event) {
-  event.stopPropagation(); // Ngăn chặn sự kiện click tiếp tục đến các phần tử bên ngoài
+dropdownButton.addEventListener("click", function () {
   dropdownContent.classList.toggle("show");
-  dropdownCaret.classList.toggle("bi-caret-down-fill");
-  dropdownCaret.classList.toggle("bi-caret-up-fill");
 });
 
 // Xử lý sự kiện click để logout
-document
-  .querySelector(".dropdown-item")
-  .addEventListener("click", function (event) {
-    event.stopPropagation(); // Ngăn chặn sự kiện click tiếp tục đến các phần tử bên ngoài
-
-    // Hiển thị hộp thoại xác nhận
-    if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
-      // Nếu người dùng chọn OK
-      // alert("Log out...");
-      // Xóa localStorage và chuyển hướng đến trang join.html
-      localStorage.removeItem("name");
-      localStorage.removeItem("room");
-      window.location.href = "/join.html";
-    } else {
-      // Nếu người dùng chọn Cancel
-      // Tắt thông báo
-      console.log("Đăng xuất bị hủy");
-    }
-  });
+document.querySelector(".dropdown-item").addEventListener("click", function () {
+  alert("Logging out...");
+  // Xử lý logout ở đây, ví dụ: xóa localStorage và chuyển hướng đến trang login
+  localStorage.removeItem("name");
+  localStorage.removeItem("room");
+  window.location.href = "/join.html"; // Thay đổi đường dẫn nếu cần
+});
 
 // Đóng dropdown nếu nhấp ra ngoài
 window.addEventListener("click", function (event) {
   if (
-    !event.target.closest(".dropdown-button") &&
+    !event.target.matches(".dropdown-button") &&
     !event.target.closest(".dropdown-content")
   ) {
     if (dropdownContent.classList.contains("show")) {
       dropdownContent.classList.remove("show");
-      dropdownCaret.classList.remove("bi-caret-up-fill");
-      dropdownCaret.classList.add("bi-caret-down-fill");
     }
   }
 });

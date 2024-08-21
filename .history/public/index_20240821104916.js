@@ -85,7 +85,7 @@ socket.on("message", (msg) => {
     appendMessage(msg, "incoming");
   } else {
     // Nếu tên người gửi trùng với tên hiện tại, gửi lại tin nhắn để hiển thị
-    appendMessage(msg, "outgoing");
+    sendMessage(msg.message);
   }
   scrollToBottom();
 });
@@ -107,20 +107,11 @@ document
   .querySelector(".dropdown-item")
   .addEventListener("click", function (event) {
     event.stopPropagation(); // Ngăn chặn sự kiện click tiếp tục đến các phần tử bên ngoài
-
-    // Hiển thị hộp thoại xác nhận
-    if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
-      // Nếu người dùng chọn OK
-      // alert("Log out...");
-      // Xóa localStorage và chuyển hướng đến trang join.html
-      localStorage.removeItem("name");
-      localStorage.removeItem("room");
-      window.location.href = "/join.html";
-    } else {
-      // Nếu người dùng chọn Cancel
-      // Tắt thông báo
-      console.log("Đăng xuất bị hủy");
-    }
+    alert("Logging out...");
+    // Xử lý logout ở đây, ví dụ: xóa localStorage và chuyển hướng đến trang login
+    localStorage.removeItem("name");
+    localStorage.removeItem("room");
+    window.location.href = "/join.html"; // Thay đổi đường dẫn nếu cần
   });
 
 // Đóng dropdown nếu nhấp ra ngoài

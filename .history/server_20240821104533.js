@@ -69,3 +69,9 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
   });
 });
+
+  // Handle disconnect
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});

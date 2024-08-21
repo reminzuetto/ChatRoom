@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log(`User joined room: ${room}`);
 
-    // Gửi lại các tin nhắn cũ hơn 1 ngày
+    // Gửi lại các tin nhắn cũ hơn 1 ngày cho phòng hiện tại
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const messages = await Message.find({
       room: room,
@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     });
 
     messages.forEach((message) => {
-      socket.emit("message", message);
+      socket.emit("message", message); // Gửi tin nhắn cũ đến người dùng mới
     });
   });
 
@@ -61,7 +61,8 @@ io.on("connection", (socket) => {
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     await Message.deleteMany({ timestamp: { $lt: oneDayAgo } });
 
-    socket.to(msg.room).emit("message", msg); // Broadcast to room excluding sender
+    // Broadcast tin nhắn đến các thành viên phòng, ngoại trừ người gửi
+    socket.to(msg.room).emit("message", msg);
   });
 
   // Handle disconnect
