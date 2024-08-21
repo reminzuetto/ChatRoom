@@ -8,10 +8,10 @@ const Message = require("./models/message"); // Đảm bảo đường dẫn đ�
 const PORT = process.env.PORT || 3000;
 
 // Kết nối đến MongoDB
-mongoose
-  .connect("mongodb://localhost/chatApp")
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.log("Could not connect to MongoDB...", err));
+mongoose.connect("mongodb://localhost/chatApp", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

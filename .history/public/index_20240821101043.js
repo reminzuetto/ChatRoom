@@ -4,9 +4,8 @@ let name = localStorage.getItem("name");
 let room = localStorage.getItem("room");
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message__area");
-let dropdownButton = document.querySelector(".dropdown-button");
+let dropdownButton = document.querySelector(".brand__right");
 let dropdownContent = document.querySelector(".dropdown-content");
-let dropdownCaret = document.querySelector(".dropdown__caret");
 
 // Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
 if (!name || !room) {
@@ -95,7 +94,7 @@ dropdownButton.addEventListener("click", function () {
 });
 
 // Xử lý sự kiện click để logout
-document.querySelector(".dropdown-item").addEventListener("click", function () {
+document.querySelector(".brand__right").addEventListener("click", function () {
   alert("Logging out...");
   // Xử lý logout ở đây, ví dụ: xóa localStorage và chuyển hướng đến trang login
   localStorage.removeItem("name");

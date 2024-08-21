@@ -3,15 +3,15 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const mongoose = require("mongoose");
-const Message = require("./models/message"); // Đảm bảo đường dẫn đúng
+const Message = require("./models/Message"); // Đảm bảo đường dẫn đúng
 
 const PORT = process.env.PORT || 3000;
 
 // Kết nối đến MongoDB
-mongoose
-  .connect("mongodb://localhost/chatApp")
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.log("Could not connect to MongoDB...", err));
+mongoose.connect("mongodb://localhost/chatApp", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 http.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

@@ -4,9 +4,8 @@ let name = localStorage.getItem("name");
 let room = localStorage.getItem("room");
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message__area");
-let dropdownButton = document.querySelector(".dropdown-button");
+let dropdownButton = document.querySelector(".brand__right");
 let dropdownContent = document.querySelector(".dropdown-content");
-let dropdownCaret = document.querySelector(".dropdown__caret");
 
 // Kiểm tra nếu không có tên hoặc phòng, quay lại trang join
 if (!name || !room) {
