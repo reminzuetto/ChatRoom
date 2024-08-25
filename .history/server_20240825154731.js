@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
@@ -8,10 +6,11 @@ const mongoose = require("mongoose");
 const Message = require("./models/message"); // Đảm bảo đường dẫn đúng
 
 const PORT = process.env.PORT || 3000;
-
+MONGODB_URI =
+  "mongodb+srv://duyetleminh2004:280604@database.hgwbyae.mongodb.net/?retryWrites=true&w=majority&appName=database";
 // Kết nối đến MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI)
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log("Could not connect to MongoDB...", err));
 

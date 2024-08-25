@@ -1,12 +1,10 @@
-require("dotenv").config();
-
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const mongoose = require("mongoose");
 const Message = require("./models/message"); // Đảm bảo đường dẫn đúng
-
+const env = require("dotenv");
 const PORT = process.env.PORT || 3000;
 
 // Kết nối đến MongoDB
