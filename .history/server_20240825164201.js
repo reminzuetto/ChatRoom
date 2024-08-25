@@ -5,7 +5,7 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const mongoose = require("mongoose");
-const Message = require("./models/message");
+const Message = require("./models/message"); // Đảm bảo đường dẫn đúng
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +21,7 @@ http.listen(PORT, () => {
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/public/favicon.png", (req, res) => {
+app.get("/favicon.png", (req, res) => {
   res.sendFile(__dirname + "/public/favicon.png");
 });
 

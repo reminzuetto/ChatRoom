@@ -21,7 +21,7 @@ http.listen(PORT, () => {
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/public/favicon.png", (req, res) => {
+app.get("/favicon.png", (req, res) => {
   res.sendFile(__dirname + "/public/favicon.png");
 });
 
