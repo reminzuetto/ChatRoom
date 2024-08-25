@@ -25,10 +25,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.get("/favicon.png", (req, res) => {
-  res.sendFile(__dirname + "/public/favicon.png");
-});
-
 io.on("connection", (socket) => {
   console.log("Connected...");
 
