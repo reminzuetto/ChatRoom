@@ -41,7 +41,7 @@ section.chat__section {
 
 .brand h1 {
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 20px;
   color: #444;
   margin-left: 10px;
 }
@@ -54,7 +54,7 @@ section.chat__section {
 
 .dropdown-button {
   background-color: #f0f0f0;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #ccc;
