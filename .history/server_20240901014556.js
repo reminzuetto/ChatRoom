@@ -1,11 +1,14 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
-const http = require("http").createServer(app);
-const io = require("socket.io")(http);
+const http = require("http");
+const socketIO = require("socket.io");
 const mongoose = require("mongoose");
 const Message = require("./models/message");
-const { encryptMessage, decryptMessage } = require("./encryption");
+const { encryptMessage, decryptMessage } = require("./encryption"); // Import module mã hóa/giải mã
+
+const app = express(); // Khởi tạo app trước
+const server = http.createServer(app); // Tạo server HTTP dựa trên app
+const io = socketIO(server); // Tạo socket.io dựa trên server HTTP
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +18,7 @@ mongoose
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log("Could not connect to MongoDB...", err));
 
-http.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
@@ -28,27 +31,28 @@ app.get("/public/favicon.png", (req, res) => {
 io.on("connection", (socket) => {
   console.log("Connected...");
 
-  // Join a room
+  // Khi một người dùng tham gia vào phòng
   socket.on("joinRoom", async (room) => {
     socket.join(room);
     console.log(`User joined room: ${room}`);
 
-    // Gửi lại các tin nhắn cũ hơn 1 ngày
+    // Tìm các tin nhắn cũ hơn 1 ngày
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const messages = await Message.find({
       room: room,
       timestamp: { $gte: oneDayAgo },
     });
 
+    // Giải mã và gửi lại các tin nhắn cũ cho người dùng
     messages.forEach((message) => {
-      const decryptedMessage = decryptMessage(message.message);
-      socket.emit("message", { ...message._doc, message: decryptedMessage });
+      const decryptedText = decryptMessage(message.message);
+      socket.emit("message", { ...message.toObject(), message: decryptedText });
     });
   });
 
-  // Phan luong tin nhan
+  // Xử lý tin nhắn mới
   socket.on("message", async (msg) => {
-    const encryptedMessage = encryptMessage(msg.message);
+    const encryptedMessage = encryptMessage(msg.message); // Mã hóa tin nhắn trước khi lưu
 
     const message = new Message({
       user: msg.user,
@@ -63,12 +67,10 @@ io.on("connection", (socket) => {
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     await Message.deleteMany({ timestamp: { $lt: oneDayAgo } });
 
-    // Giải mã tin nhắn trước khi phát lại
-    const decryptedMessage = decryptMessage(encryptedMessage);
-    socket.to(msg.room).emit("message", { ...msg, message: decryptedMessage }); // Phat lai tin nhan cho tat ca nguoi dung trong phong tru nguoi gui tin nhan
+    socket.to(msg.room).emit("message", { ...msg, message: encryptedMessage }); // Gửi tin nhắn đã mã hóa
   });
 
-  // Handle disconnect
+  // Xử lý sự kiện ngắt kết nối
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });

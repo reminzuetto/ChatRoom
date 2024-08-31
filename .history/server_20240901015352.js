@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  // Phan luong tin nhan
+  // Handle message and broadcast it to the specific room
   socket.on("message", async (msg) => {
     const encryptedMessage = encryptMessage(msg.message);
 
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 
     // Giải mã tin nhắn trước khi phát lại
     const decryptedMessage = decryptMessage(encryptedMessage);
-    socket.to(msg.room).emit("message", { ...msg, message: decryptedMessage }); // Phat lai tin nhan cho tat ca nguoi dung trong phong tru nguoi gui tin nhan
+    socket.to(msg.room).emit("message", { ...msg, message: decryptedMessage }); // Broadcast to room excluding sender
   });
 
   // Handle disconnect

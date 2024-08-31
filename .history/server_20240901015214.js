@@ -1,12 +1,12 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const mongoose = require("mongoose");
 const Message = require("./models/message");
 const { encryptMessage, decryptMessage } = require("./encryption");
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Kết nối đến MongoDB
@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  // Phan luong tin nhan
+  // Handle message and broadcast it to the specific room
   socket.on("message", async (msg) => {
     const encryptedMessage = encryptMessage(msg.message);
 
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 
     // Giải mã tin nhắn trước khi phát lại
     const decryptedMessage = decryptMessage(encryptedMessage);
-    socket.to(msg.room).emit("message", { ...msg, message: decryptedMessage }); // Phat lai tin nhan cho tat ca nguoi dung trong phong tru nguoi gui tin nhan
+    socket.to(msg.room).emit("message", { ...msg, message: decryptedMessage }); // Broadcast to room excluding sender
   });
 
   // Handle disconnect
