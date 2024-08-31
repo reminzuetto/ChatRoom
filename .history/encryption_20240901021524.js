@@ -1,16 +1,7 @@
 const crypto = require("crypto");
 
 const algorithm = "aes-256-cbc";
-
-// Kiểm tra biến môi trường
-const keyHex = process.env.ENCRYPTION_KEY;
-if (!keyHex || typeof keyHex !== "string") {
-  throw new Error("ENCRYPTION_KEY is not defined or is not a string");
-}
-if (keyHex.length !== 64) {
-  throw new Error("ENCRYPTION_KEY must be a 64-character hex string");
-}
-const key = Buffer.from(keyHex, "hex"); // Chuyển đổi từ hex sang buffer
+const key = Buffer.from(process.env.ENCRYPTION_KEY, "hex"); // Chuyển đổi từ hex sang buffer
 
 // Mã hóa tin nhắn
 function encryptMessage(message) {
@@ -24,9 +15,6 @@ function encryptMessage(message) {
 // Giải mã tin nhắn
 function decryptMessage(encryptedMessage) {
   const [ivHex, encrypted] = encryptedMessage.split(":");
-  if (!ivHex || !encrypted) {
-    throw new Error("Invalid encrypted message format");
-  }
   const iv = Buffer.from(ivHex, "hex");
   const decipher = crypto.createDecipheriv(algorithm, key, iv);
   let decrypted = decipher.update(encrypted, "hex", "utf8");
