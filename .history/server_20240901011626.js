@@ -40,17 +40,14 @@ io.on("connection", (socket) => {
     });
 
     messages.forEach((message) => {
-      socket.emit("message", {
-        ...message.toObject(),
-        message: message.decryptMessage(), // Giải mã tin nhắn
-      });
+      socket.emit("message", message);
     });
   });
 
   // Handle message and broadcast it to the specific room
   socket.on("message", async (msg) => {
     const message = new Message({
-      user: msg.user,
+      user: msg.user, // Ghi lại thông tin người gửi
       room: msg.room,
       message: msg.message,
       timestamp: new Date(),
@@ -62,12 +59,7 @@ io.on("connection", (socket) => {
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     await Message.deleteMany({ timestamp: { $lt: oneDayAgo } });
 
-    socket.to(msg.room).emit("message", {
-      user: msg.user,
-      room: msg.room,
-      message: msg.message,
-      timestamp: new Date(),
-    });
+    socket.to(msg.room).emit("message", msg); // Broadcast to room excluding sender
   });
 
   // Handle disconnect

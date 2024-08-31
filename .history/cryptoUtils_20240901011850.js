@@ -1,0 +1,38 @@
+const crypto = require("crypto");
+require("dotenv").config();
+
+const algorithm = "aes-256-cbc";
+const key = Buffer.from(process.env.ENCRYPTION_KEY, "hex");
+const ivLength = 16; // AES block size
+
+function encrypt(text) {
+  const iv = crypto.randomBytes(ivLength); // Generate a new IV
+  const cipher = crypto.createCipheriv(algorithm, key, iv);
+  let encrypted = cipher.update(text, "utf8", "hex");
+  encrypted += cipher.final("hex");
+  // Return IV and encrypted text combined
+  return iv.toString("hex") + ":" + encrypted;
+}
+
+function decrypt(text) {
+  const textParts = text.split(":");
+  if (textParts.length !== 2) {
+    throw new Error("Invalid encrypted text format");
+  }
+
+  // Ensure IV and encrypted text are in correct format
+  const iv = Buffer.from(textParts[0], "hex");
+  const encryptedText = Buffer.from(textParts[1], "hex");
+
+  // Validate IV length
+  if (iv.length !== ivLength) {
+    throw new Error("Invalid IV length");
+  }
+
+  const decipher = crypto.createDecipheriv(algorithm, key, iv);
+  let decrypted = decipher.update(encryptedText, "hex", "utf8");
+  decrypted += decipher.final("utf8");
+  return decrypted;
+}
+
+module.exports = { encrypt, decrypt };

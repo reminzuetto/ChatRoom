@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
@@ -25,7 +26,7 @@ app.get("/public/favicon.png", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("Connected...");
 
   // Join a room
   socket.on("joinRoom", async (room) => {
@@ -40,10 +41,7 @@ io.on("connection", (socket) => {
     });
 
     messages.forEach((message) => {
-      socket.emit("message", {
-        ...message.toObject(),
-        message: message.decryptMessage(), // Giải mã tin nhắn
-      });
+      socket.emit("message", message);
     });
   });
 
@@ -62,12 +60,7 @@ io.on("connection", (socket) => {
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     await Message.deleteMany({ timestamp: { $lt: oneDayAgo } });
 
-    socket.to(msg.room).emit("message", {
-      user: msg.user,
-      room: msg.room,
-      message: msg.message,
-      timestamp: new Date(),
-    });
+    socket.to(msg.room).emit("message", msg); // Broadcast to room excluding sender
   });
 
   // Handle disconnect

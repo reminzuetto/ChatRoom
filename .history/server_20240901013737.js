@@ -1,10 +1,10 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const mongoose = require("mongoose");
 const Message = require("./models/message");
+const { encrypt, decrypt } = require("./functions/cryptoUtils");
 
 const PORT = process.env.PORT || 3000;
 
@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     messages.forEach((message) => {
       socket.emit("message", {
         ...message.toObject(),
-        message: message.decryptMessage(), // Giải mã tin nhắn
+        message: decrypt(message.message), // Giải mã tin nhắn
       });
     });
   });
@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
     const message = new Message({
       user: msg.user,
       room: msg.room,
-      message: msg.message,
+      message: encrypt(msg.message), // Mã hóa tin nhắn
       timestamp: new Date(),
     });
 

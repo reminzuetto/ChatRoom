@@ -1,4 +1,5 @@
-require("dotenv").config();
+require("dotenv").config(); // Đọc biến môi trường từ tệp .env
+
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
@@ -25,7 +26,7 @@ app.get("/public/favicon.png", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("Connected...");
 
   // Join a room
   socket.on("joinRoom", async (room) => {
@@ -41,8 +42,10 @@ io.on("connection", (socket) => {
 
     messages.forEach((message) => {
       socket.emit("message", {
-        ...message.toObject(),
-        message: message.decryptMessage(), // Giải mã tin nhắn
+        user: message.user,
+        room: message.room,
+        text: message.decryptMessage(), // Giải mã tin nhắn
+        timestamp: message.timestamp,
       });
     });
   });
@@ -52,7 +55,7 @@ io.on("connection", (socket) => {
     const message = new Message({
       user: msg.user,
       room: msg.room,
-      message: msg.message,
+      message: msg.text, // Tin nhắn sẽ được mã hóa tự động khi lưu
       timestamp: new Date(),
     });
 
@@ -65,7 +68,7 @@ io.on("connection", (socket) => {
     socket.to(msg.room).emit("message", {
       user: msg.user,
       room: msg.room,
-      message: msg.message,
+      text: msg.text, // Tin nhắn gốc sẽ được giải mã trong client
       timestamp: new Date(),
     });
   });
