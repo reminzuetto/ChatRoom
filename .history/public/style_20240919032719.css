@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: #f8f8f8; */
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to bottom right, #e0d1ff, #b0a6e1);
+}
+section.chat__section {
+  width: 800px;
+  max-width: 90%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.brand {
+  background: #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.brand__left {
+  padding: 0 20px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+}
+
+.brand h1 {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #444;
+  margin-left: 10px;
+}
+
+/* Cập nhật CSS cho phần .brand__right */
+.brand__right {
+  position: relative;
+  display: inline-block;
+  /* width: 100%; */
+}
+
+/* Cập nhật CSS cho nút dropdown */
+.dropdown-button {
+  background-color: #f0f0f0;
+  padding: 10px 15px; /* Điều chỉnh padding cho phù hợp */
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1; /* Đảm bảo phần tử này có thể co lại khi cần */
+  max-width: 100px; /* Giới hạn kích thước tối đa */
+  overflow: hidden; /* Ẩn phần nội dung vượt quá kích thước */
+  white-space: nowrap; /* Ngăn nội dung bị xuống dòng */
+  text-overflow: ellipsis; /* Thêm dấu ... nếu nội dung quá dài */
+}
+
+/* Cập nhật CSS cho nội dung dropdown */
+.dropdown-content {
+  display: none; /* Ẩn nội dung dropdown */
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 120px; /* Điều chỉnh kích thước để phù hợp */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  top: 100%;
+  right: 0; /* Đặt dropdown content ra bên phải */
+}
+
+/* Cập nhật CSS cho các mục trong dropdown */
+.dropdown-item {
+  padding: 10px 15px; /* Điều chỉnh padding cho phù hợp */
+  cursor: pointer;
+  white-space: nowrap; /* Ngăn nội dung bị xuống dòng */
+}
+
+/* CSS cho khi dropdown được hiển thị */
+.show {
+  display: block;
+}
+
+/* CSS cho biểu tượng caret */
+.dropdown-button i {
+  margin-left: 8px; /* Khoảng cách giữa văn bản và biểu tượng caret */
+}
+
+/* Cập nhật CSS cho khi cửa sổ nhỏ hơn */
+@media (max-width: 768px) {
+  .brand__right {
+    flex: 1; /* Đảm bảo phần tử này có thể co lại khi cần */
+  }
+
+  .dropdown-button {
+    max-width: none; /* Bỏ giới hạn kích thước tối đa khi màn hình nhỏ */
+  }
+
+  .dropdown-content {
+    min-width: 100px; /* Điều chỉnh kích thước để phù hợp với màn hình nhỏ */
+  }
+}
+
+.message__area {
+  height: 500px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-top: 40px;
+}
+
+.message {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  max-width: 300px;
+  position: relative;
+  overflow-wrap: break-word; /* Cho phép chia từ */
+  word-wrap: break-word; /* Cho phép chia từ */
+  word-break: break-word; /* Cho phép chia từ */
+  /* white-space: pre-wrap; Đảm bảo không bị cắt dòng */
+}
+.incoming {
+  background: #8f8be8;
+  color: #fff;
+}
+.outgoing {
+  background: #dedee4;
+  color: #787986;
+  margin-left: auto;
+}
+
+.message h4 {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+#send-icon {
+  display: inline-block;
+  margin-left: 10px; /* Khoảng cách giữa textarea và biểu tượng gửi */
+}
+
+#send-icon img {
+  width: 24px; /* Kích thước của biểu tượng gửi */
+  height: 24px;
+  cursor: pointer; /* Biểu tượng chuột khi di chuyển qua biểu tượng */
+}
+
+.textarea {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.textarea textarea {
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  outline: none;
+  background: #fbfbfb;
+  flex: 1; /* Take up remaining space */
+  padding: 10px;
+  font-size: 16px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  resize: none;
+  width: 100%;
+  height: 80px; /* Chiều cao ban đầu */
+  max-height: 120px; /* Chiều cao tối đa */
+  overflow-y: auto; /* Ẩn thanh trượt dọc */
+  scroll-behavior: smooth;
+  scroll-snap-type: none;
+  background: rgba(190, 185, 185, 0.4);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.textarea i {
+  font-size: 24px;
+  margin-left: 10px; /* Adjust as needed */
+  color: #666; /* Optional color for the icon */
+  cursor: pointer; /* Optional cursor style */
+}
+
+.textarea i:hover {
+  color: #333; /* Optional color for the icon */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to bottom right, #e0d1ff, #b0a6e1);
+}
+
+section.join__section {
+  width: 400px; /* Giảm kích thước của form */
+  max-width: 90%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.brand {
+  padding: 20px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  border-radius: 12px 12px 0 0; /* Bo góc trên của section */
+  margin-bottom: 20px;
+}
+
+.brand h1 {
+  text-transform: uppercase;
+  font-size: 24px; /* Tăng kích thước chữ tiêu đề */
+  color: #444;
+}
+
+.input__group {
+  margin-bottom: 15px;
+}
+
+.input__group label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input__group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Bo góc của trường nhập liệu */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 12px; /* Tăng padding để nút lớn hơn và dễ nhấn hơn */
+  font-size: 18px; /* Tăng kích thước chữ để dễ đọc hơn */
+  background-color: #8f8be8; /* Màu nền chính của nút */
+  color: #fff; /* Màu chữ của nút */
+  border: none;
+  border-radius: 8px; /* Bo góc của nút bấm */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Thay đổi màu nền và hiệu ứng nhấn */
+}
+
+button:hover {
+  background-color: #7e7adf; /* Màu nền khi di chuột qua */
+  transform: scale(1.05); /* Phóng to nút một chút khi hover */
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Hiệu ứng viền khi nút được chọn */
+}
+
+button:active {
+  transform: scale(0.98); /* Thu nhỏ nút khi nhấn */
+}
+
+.username-display {
+  left: 20px; /* Đẩy phần tử cách bên trái 20px */
+  top: 50%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
