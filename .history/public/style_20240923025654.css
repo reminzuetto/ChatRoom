@@ -16,17 +16,20 @@ body {
   background: linear-gradient(to bottom right, #e0d1ff, #b0a6e1);
 }
 section.chat__section {
-  width: 800px;
-  max-width: 90%;
+  width: 400px; /* Chiều rộng tối thiểu */
+  max-width: 90%; /* Giới hạn chiều rộng tối đa */
+  height: 60vh; /* Chiều cao responsive */
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto; /* Căn giữa */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Ẩn nội dung vượt quá chiều rộng */
 }
 .brand {
+  background: #f1f1f1;
   display: flex;
   justify-content: space-between;
 }
@@ -309,6 +312,10 @@ button:active {
 
 /* Điều chỉnh kích thước cho màn hình nhỏ (điện thoại) */
 @media screen and (max-width: 600px) {
+  .brand__right {
+    width: 80px; /* Thu nhỏ lại trên màn hình điện thoại */
+  }
+
   .brand__right img {
     width: 40px; /* Thu nhỏ ảnh logo */
     height: auto; /* Đảm bảo tỷ lệ ảnh vẫn giữ nguyên */
