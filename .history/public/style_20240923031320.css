@@ -66,6 +66,7 @@ section.chat__section {
   text-overflow: ellipsis;
 }
 
+/* Cập nhật CSS cho nội dung dropdown */
 .dropdown-content {
   display: none; /* Ẩn nội dung dropdown */
   position: absolute;

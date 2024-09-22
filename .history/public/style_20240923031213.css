@@ -54,18 +54,22 @@ section.chat__section {
 
 /* Cập nhật CSS cho nút dropdown */
 .dropdown-button {
-  padding: 10px 15px;
+  background-color: #f0f0f0;
+  padding: 10px 15px; /* Điều chỉnh padding cho phù hợp */
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
+  position: relative;
   flex: 1; /* Đảm bảo phần tử này có thể co lại khi cần */
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  max-width: 100px; /* Giới hạn kích thước tối đa */
+  overflow: hidden; /* Ẩn phần nội dung vượt quá kích thước */
+  white-space: nowrap; /* Ngăn nội dung bị xuống dòng */
+  text-overflow: ellipsis; /* Thêm dấu ... nếu nội dung quá dài */
 }
 
+/* Cập nhật CSS cho nội dung dropdown */
 .dropdown-content {
   display: none; /* Ẩn nội dung dropdown */
   position: absolute;
@@ -75,7 +79,7 @@ section.chat__section {
   z-index: 1;
   border-radius: 5px;
   top: 100%;
-  right: 0;
+  right: 0; /* Đặt dropdown content ra bên phải */
 }
 
 /* Cập nhật CSS cho các mục trong dropdown */
