@@ -6,12 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow: hidden; /* Vô hiệu hóa thanh cuộn ngang và dọc */
-  height: 100%; /* Đảm bảo chiều cao 100% */
-}
-
 body {
   display: flex;
   align-items: center;
@@ -52,16 +46,18 @@ section.chat__section {
   margin-left: 10px;
 }
 
+/* Cập nhật CSS cho phần .brand__right */
 .brand__right {
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 150px; /* Kích thước cố định trên màn hình lớn */
   justify-content: flex-end;
 }
 
+/* Cập nhật CSS cho nút dropdown */
 .dropdown-button {
   background-color: #f0f0f0;
-  padding: 10px 15px;
+  padding: 10px 15px; /* Điều chỉnh padding cho phù hợp */
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #ccc;

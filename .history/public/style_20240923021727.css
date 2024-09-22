@@ -6,12 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow: hidden; /* Vô hiệu hóa thanh cuộn ngang và dọc */
-  height: 100%; /* Đảm bảo chiều cao 100% */
-}
-
 body {
   display: flex;
   align-items: center;
@@ -52,16 +46,16 @@ section.chat__section {
   margin-left: 10px;
 }
 
+/* Cập nhật CSS cho phần .brand__right */
 .brand__right {
-  display: flex;
-  align-items: center;
-  width: 150px;
-  justify-content: flex-end;
+  position: relative;
+  display: inline-block;
 }
 
+/* Cập nhật CSS cho nút dropdown */
 .dropdown-button {
   background-color: #f0f0f0;
-  padding: 10px 15px;
+  padding: 10px 15px; /* Điều chỉnh padding cho phù hợp */
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -310,26 +304,4 @@ button:active {
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Điều chỉnh kích thước cho màn hình nhỏ (điện thoại) */
-@media screen and (max-width: 600px) {
-  .brand__right {
-    width: 80px; /* Thu nhỏ lại trên màn hình điện thoại */
-  }
-
-  .brand__right img {
-    width: 40px; /* Thu nhỏ ảnh logo */
-    height: auto; /* Đảm bảo tỷ lệ ảnh vẫn giữ nguyên */
-  }
-
-  .brand__right span {
-    font-size: 12px; /* Thu nhỏ kích thước chữ */
-    margin-left: 5px; /* Đảm bảo chữ không quá sát vào ảnh */
-  }
-
-  /* Thu nhỏ phần brand__left một chút nếu cần */
-  .brand__left h1 {
-    font-size: 18px; /* Thu nhỏ tiêu đề cho phù hợp */
-  }
 }

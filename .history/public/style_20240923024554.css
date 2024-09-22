@@ -6,12 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow: hidden; /* Vô hiệu hóa thanh cuộn ngang và dọc */
-  height: 100%; /* Đảm bảo chiều cao 100% */
-}
-
 body {
   display: flex;
   align-items: center;
