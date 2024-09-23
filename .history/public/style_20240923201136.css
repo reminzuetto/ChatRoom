@@ -302,7 +302,13 @@ button:active {
 }
 
 @media screen and (max-width: 200px) {
-  .brand {
-    margin: 0;
+  .brand__left h1 {
+    font-size: 18px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  .dropdown-content {
+    min-width: 100px;
   }
 }
