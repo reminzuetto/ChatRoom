@@ -207,7 +207,6 @@ body {
 section.join__section {
   width: 400px; /* Giảm kích thước của form */
   max-width: 90%;
-  background: #fff;
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 20px;

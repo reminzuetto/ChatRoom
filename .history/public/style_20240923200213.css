@@ -27,7 +27,7 @@ section.chat__section {
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 .brand {
-  background: white;
+  background: #f1f1f1;
   display: flex;
   justify-content: space-between;
 }
