@@ -61,9 +61,10 @@ section.chat__section {
   display: flex;
   align-items: center;
   position: relative;
+  flex: 1;
   max-width: 100px; /* Giới hạn kích thước tối đa */
   overflow: hidden; /* Ẩn phần nội dung vượt quá kích thước */
-  white-space: nowrap; /* Ngăn nội dung bị xuống dòng */
+  white-space: nowrap;
   text-overflow: ellipsis; /* Thêm dấu ... nếu nội dung quá dài */
 }
 
@@ -95,6 +96,21 @@ section.chat__section {
 /* CSS cho biểu tượng caret */
 .dropdown-button i {
   margin-left: 8px; /* Khoảng cách giữa văn bản và biểu tượng caret */
+}
+
+/* Cập nhật CSS cho khi cửa sổ nhỏ hơn */
+@media (max-width: 768px) {
+  .brand__right {
+    flex: 1; /* Đảm bảo phần tử này có thể co lại khi cần */
+  }
+
+  .dropdown-button {
+    max-width: none; /* Bỏ giới hạn kích thước tối đa khi màn hình nhỏ */
+  }
+
+  .dropdown-content {
+    min-width: 100px; /* Điều chỉnh kích thước để phù hợp với màn hình nhỏ */
+  }
 }
 
 .message__area {
@@ -219,7 +235,7 @@ section.join__section {
   padding: 20px;
   background: white;
   display: flex;
-  align-items: space-between;
+  align-items: center;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -296,7 +312,10 @@ button:active {
     white-space: normal;
   }
 
-  .dropdown-content {
-    min-width: 100px;
+  .brand__right {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
   }
 }

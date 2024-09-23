@@ -299,4 +299,9 @@ button:active {
   .dropdown-content {
     min-width: 100px;
   }
+
+  .brand {
+    display: flex;
+    flex-direction: space-between;
+  }
 }

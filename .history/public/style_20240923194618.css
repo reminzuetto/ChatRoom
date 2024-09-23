@@ -219,7 +219,7 @@ section.join__section {
   padding: 20px;
   background: white;
   display: flex;
-  align-items: space-between;
+  align-items: center;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -289,11 +289,20 @@ button:active {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Cập nhật CSS cho khi cửa sổ nhỏ hơn */
+
 @media screen and (max-width: 600px) {
   .brand__left h1 {
     font-size: 18px;
     word-wrap: break-word;
     white-space: normal;
+  }
+
+  .brand__right {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
   }
 
   .dropdown-content {

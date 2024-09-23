@@ -219,7 +219,7 @@ section.join__section {
   padding: 20px;
   background: white;
   display: flex;
-  align-items: space-between;
+  align-items: center;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -296,7 +296,10 @@ button:active {
     white-space: normal;
   }
 
-  .dropdown-content {
-    min-width: 100px;
+  .brand__right {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
   }
 }

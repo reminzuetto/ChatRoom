@@ -219,7 +219,7 @@ section.join__section {
   padding: 20px;
   background: white;
   display: flex;
-  align-items: space-between;
+  align-items: center;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -289,6 +289,21 @@ button:active {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Cập nhật CSS cho khi cửa sổ nhỏ hơn */
+@media (max-width: 768px) {
+  .brand__right {
+    max-width: 100px;
+  }
+
+  .dropdown-button {
+    max-width: none; /* Bỏ giới hạn kích thước tối đa khi màn hình nhỏ */
+  }
+
+  .dropdown-content {
+    min-width: 100px; /* Điều chỉnh kích thước để phù hợp với màn hình nhỏ */
+  }
+}
+
 @media screen and (max-width: 600px) {
   .brand__left h1 {
     font-size: 18px;
@@ -296,7 +311,14 @@ button:active {
     white-space: normal;
   }
 
+  .brand__right {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
+  }
+
   .dropdown-content {
-    min-width: 100px;
+    min-width: 100px; /* Điều chỉnh kích thước để phù hợp với màn hình nhỏ */
   }
 }
