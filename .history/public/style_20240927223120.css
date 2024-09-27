@@ -33,7 +33,7 @@ section.chat__section {
 }
 
 .brand__left {
-  padding: 0;
+  padding: 0 20px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -306,6 +306,6 @@ button:active {
     margin: 0;
   }
   .brand__left {
-    padding: 0;
+    padding-left: 0;
   }
 }
