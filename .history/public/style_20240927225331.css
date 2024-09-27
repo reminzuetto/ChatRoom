@@ -316,12 +316,4 @@ button:active {
   .brand__right {
     padding-right: 5px;
   }
-
-  .message__area {
-    padding: 20px 0;
-  }
-
-  .message {
-    margin-bottom: 20px;
-  }
 }

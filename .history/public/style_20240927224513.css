@@ -26,6 +26,11 @@ section.chat__section {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+.brand {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+}
 
 .brand__left {
   padding: 0 20px;
@@ -211,10 +216,10 @@ section.join__section {
 }
 
 .brand {
+  padding: 20px;
   background: white;
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  align-items: space-between;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -296,32 +301,9 @@ button:active {
   }
 }
 
-@media screen and (max-width: 600px) {
-  .incoming {
-    max-width: 60%;
-  }
-
+@media screen and (max-width: 300px) {
   .brand {
-    padding: 20px 0;
-  }
-
-  .outgoing {
-    max-width: 70%;
-  }
-
-  .brand__left {
-    padding-left: 5px;
-  }
-
-  .brand__right {
-    padding-right: 5px;
-  }
-
-  .message__area {
-    padding: 20px 0;
-  }
-
-  .message {
-    margin-bottom: 20px;
+    margin: 0;
+    justify-content: space-around;
   }
 }

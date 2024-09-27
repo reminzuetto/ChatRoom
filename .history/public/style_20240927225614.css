@@ -319,9 +319,6 @@ button:active {
 
   .message__area {
     padding: 20px 0;
-  }
-
-  .message {
-    margin-bottom: 20px;
+    height: fit-content;
   }
 }

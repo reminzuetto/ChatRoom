@@ -26,6 +26,11 @@ section.chat__section {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+.brand {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+}
 
 .brand__left {
   padding: 0 20px;
@@ -213,8 +218,7 @@ section.join__section {
 .brand {
   background: white;
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  align-items: space-between;
   border-radius: 12px 12px 0 0; /* Bo góc trên của section */
   margin-bottom: 20px;
 }
@@ -301,10 +305,6 @@ button:active {
     max-width: 60%;
   }
 
-  .brand {
-    padding: 20px 0;
-  }
-
   .outgoing {
     max-width: 70%;
   }
@@ -315,13 +315,5 @@ button:active {
 
   .brand__right {
     padding-right: 5px;
-  }
-
-  .message__area {
-    padding: 20px 0;
-  }
-
-  .message {
-    margin-bottom: 20px;
   }
 }

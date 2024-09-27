@@ -301,10 +301,6 @@ button:active {
     max-width: 60%;
   }
 
-  .brand {
-    padding: 20px 0;
-  }
-
   .outgoing {
     max-width: 70%;
   }
@@ -315,13 +311,5 @@ button:active {
 
   .brand__right {
     padding-right: 5px;
-  }
-
-  .message__area {
-    padding: 20px 0;
-  }
-
-  .message {
-    margin-bottom: 20px;
   }
 }
